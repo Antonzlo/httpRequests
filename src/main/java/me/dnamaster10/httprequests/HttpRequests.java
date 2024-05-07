@@ -134,11 +134,13 @@ public final class HttpRequests extends JavaPlugin {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         switch (command.getName().toLowerCase()) {
-            case "httpsend" -> {
+            case "getcode" -> {
                 //Check command syntax
                 if (!CommandChecks.checkHttpSend(sender, args)) {
                     return true;
                 }
+                Bukkit.getScoreboardManager().getNewScoreboard();
+                scoreboard.getObjective(DisplaySlot.SIDEBAR).getScore("prefixteam1").setScore(20);
                 //If the syntax and permissions are fine, create a new request object
                 //and add the request to the queue
                 Request request = new Request(sender, args);
